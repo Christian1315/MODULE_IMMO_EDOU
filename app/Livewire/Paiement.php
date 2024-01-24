@@ -34,7 +34,7 @@ class Paiement extends Component
 
     public $generalError = "";
     // 
-    public $show_form = true;
+    public $show_form = false;
     public $show_solds = false;
 
     // search by period
