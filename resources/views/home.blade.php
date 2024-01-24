@@ -85,7 +85,7 @@
             </div>
         </div>
 
-        <div class="container-fluid fixed-bottom shadow-lg py-3">
+        <div class="container-fluid fixed-bottom shadow-lg py-3 bg-white">
             <div class="row">
                 <div class="col-md-12 px-0 mx-0">
                     <p class="text-center">© Copyright 2024 - Réalisé par HSMC</p>
