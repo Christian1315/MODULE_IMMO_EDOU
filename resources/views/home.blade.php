@@ -98,7 +98,7 @@
     <script src="fichiers/bootstrap.min.js"></script>
     <script src="fichiers/popper.min.js"></script>
 
-    @livewireStyles
+    @livewireScripts
 </body>
 
 </html>
