@@ -40,7 +40,7 @@ class Setting extends Component
     public $role_error = "";
 
     // 
-    public $showAddForm = false;
+    public $showAddForm = true;
     public $showUserRoles = false;
 
     public $showRoleForm = false;
