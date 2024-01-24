@@ -86,7 +86,7 @@ class Initiation extends Component
 
         // PROPRIETAIRES
         $proprietors = Http::withHeaders($this->hearders)->get($this->BASE_URL . "immo/proprietor/all")->json();
-        if (!$proprietors[0]) {
+        if (!$proprietors["status"]) {
             $this->proprietors = [];
         }else {
             $this->proprietors = $proprietors["data"];

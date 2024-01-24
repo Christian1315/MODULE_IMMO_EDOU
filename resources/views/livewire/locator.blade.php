@@ -185,7 +185,7 @@
             @if($current_locator)
             <h5 class="text-center">Les Maisons dans lesquelles se trouve le locataire -- <strong class="text-red"> {{$current_locator["name"]}} {{$current_locator["prenom"]}} </strong> </h5>
             <div class="table-responsive">
-                <table class="table table-striped table-sm table-dark">
+                <table class="table table-striped table-sm shadow-lg p-3">
                     @if(count($locator_houses)!=0)
                     <thead>
                         <tr>
@@ -222,7 +222,7 @@
             @if($current_locator_for_room)
             <h5 class="text-center">Les Chambres dans lesquelles se trouve le locataire -- <strong class="text-red"> {{$current_locator_for_room["name"]}} {{$current_locator_for_room["prenom"]}} </strong> </h5>
             <div class="table-responsive">
-                <table class="table table-striped table-sm table-dark">
+                <table class="table table-striped table-sm shadow-lg p-3">
                     @if(count($locator_rooms)!=0)
 
                     <thead>

@@ -95,7 +95,7 @@
                     </span> </h5>
                 <br>
                 <div class="table-responsive animate__animated animate__bounce">
-                    <table class="table table-striped table-sm table-dark">
+                    <table class="table table-striped table-sm shadow-lg p-3">
                         @if(count($currentUserRoles)>0)
                         <thead>
                             <tr>

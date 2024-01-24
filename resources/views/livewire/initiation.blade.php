@@ -47,7 +47,7 @@
     <div class="row">
         <div class="col-12">
             <div class="table-responsive">
-                <table class="table table-striped table-sm table-dark">
+                <table class="table table-striped table-sm shadow-lg">
                     @if($initiations_count>0)
                     <thead>
                         <tr>

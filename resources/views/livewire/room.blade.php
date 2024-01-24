@@ -214,7 +214,7 @@
             @if($current_room)
             <h5 class="text-center">Les Locataire de la chambre -- <strong class="text-red"> {{$current_room["number"]}} </strong> </h5>
             <div class="table-responsive">
-                <table class="table table-striped table-sm table-dark">
+                <table class="table table-striped table-sm shadow-lg p-3">
                     @if(count($room_locations)!=0)
                     <thead>
                         <tr>

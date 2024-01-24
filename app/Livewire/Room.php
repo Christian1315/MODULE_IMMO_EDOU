@@ -87,7 +87,7 @@ class Room extends Component
     public $generalError = "";
 
     // 
-    public $show_form = false;
+    public $show_form = true;
     public $click_count = 2;
 
 

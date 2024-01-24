@@ -21,6 +21,8 @@ class Dashbord extends Component
     {
         $BASE_URL = env("BASE_URL");
         $token = session()->get("token");
+
+        // session()->forget("token");
         $hearders = [
             "Authorization" => "Bearer " . $token,
         ];

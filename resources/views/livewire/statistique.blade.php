@@ -112,7 +112,7 @@
                 </span> </h5>
 
             <div class="table-responsive">
-                <table class="table table-striped table-sm table-dark">
+                <table class="table table-striped table-sm shadow-lg p-3">
                     @if(count($location_locatorsAfter)>0)
                     <thead>
                         <tr>

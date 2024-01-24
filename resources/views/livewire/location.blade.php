@@ -329,7 +329,7 @@
             @if($current_location)
             <h5 class="text-center">Les factures associées à cette location </strong> </h5>
             <div class="table-responsive">
-                <table class="table table-striped table-sm table-dark">
+                <table class="table table-striped table-sm shadow-lg p-3">
                     @if(count($location_factures)!=0)
                     <thead>
                         <tr>

@@ -82,8 +82,8 @@
     <!-- TABLEAU DE LISTE -->
     <div class="row">
         <div class="col-12">
-            <div class="table-responsive">
-                <table class="table table-striped table-sm table-dark">
+            <div class="table-responsive p-3 roundered shadow-lg">
+                <table class="table table-striped table-sm ">
                     <thead>
                         <tr>
                             <th class="text-center">N°</th>

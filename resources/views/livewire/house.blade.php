@@ -200,7 +200,7 @@
             @if($current_house)
             <h5 class="text-center">Les Chambres de la maison -- <strong class="text-red"> {{$current_house["name"]}} </strong> </h5>
             <div class="table-responsive">
-                <table class="table table-striped table-sm table-dark">
+                <table class="table table-striped table-sm shadow-lg p-3">
                     @if(count($house_rooms)!=0)
                     <thead>
                         <tr>

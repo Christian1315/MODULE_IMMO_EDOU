@@ -96,7 +96,7 @@ class Location extends Component
 
     public $generalError = "";
     // 
-    public $show_form = false;
+    public $show_form = true;
     public $show_demenage_form = false;
     public $show_encaisse_form = false;
     public $show_traitFacture_form = false;

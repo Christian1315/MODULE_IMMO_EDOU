@@ -180,7 +180,7 @@
             @if($current_proprietor)
             <h5 class="text-center">Les Maisons du propriétaire -- <strong class="text-red"> {{$current_proprietor["lastname"]}} {{$current_proprietor["firstname"]}} </strong> </h5>
             <div class="tabsle-responsive">
-                <table class="table table-striped table-sm table-dark">
+                <table class="table table-striped table-sm shadow-lg p-3">
                     @if(count($this->proprietor_houses)!=0)
                     <thead>
                         <tr>
