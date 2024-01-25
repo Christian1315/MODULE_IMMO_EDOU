@@ -43,4 +43,11 @@ class HomeController extends Controller
 
         return redirect("/")->with("success", "Vous êtes déconnecté.e avec succès:");
     }
+
+
+    function DemandReinitializePassword(Request $request)
+    {
+        return view("reinitialisation");
+    }
+
 }

@@ -16,5 +16,9 @@
         </div>
         <br>
         <button type="submit" class="btn bg-dark w-100">SE CONNECTER</button>
+
+        <div class="">
+            <a href="/demande-reinitialisation" class="text-red" style="text-decoration: none;">Mot de passe oublié!?</a>
+        </div>
     </form>
 </div>

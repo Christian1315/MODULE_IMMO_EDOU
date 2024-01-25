@@ -19,6 +19,7 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/', "Home")->name("home");
     Route::post('/login', "Login")->name("login");
     Route::get('/logout', "Logout")->name("logout");
+    Route::get('/demande-reinitialisation', "DemandReinitializePassword")->name("demande-reinitialisation");
 });
 
 
