@@ -27,7 +27,7 @@
 
     <body>
         <nav class="navbar navbar-dark fixed-top bg-red flex-md-nowrap p-0 shadow">
-            <a class="navbar-brand col-sm-3 col-md-2 mr-0 justify-content-between" href="#">
+            <a class="navbar-brand col-sm-3 col-md-2 mr-0 justify-content-between" href="/">
                 <button class="navbar-toggler" type="button" id="open-moblie-sidebar">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -429,6 +429,8 @@
                                 <span data-feather="plus-circle"></span>
                             </a>
                         </h6>
+                       
+                        @if(session()->get("userId") ==1 || session()->get("userId") ==2 || session()->get("userId") ==3)
                         <ul class="nav flex-column mb-2">
 
                             @if($active=="setting")
@@ -462,7 +464,9 @@
                                 </a>
                             </li>
                             @endif
+
                         </ul>
+                        @endif
                     </div>
                 </nav>
 
