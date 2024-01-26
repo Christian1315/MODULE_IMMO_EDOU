@@ -1,10 +1,11 @@
 <div>
 
     <div class="col-md-12">
+        @if($show_solds)
         @if($current_account)
-        <h5 class="">Détails des creditation du compte -- <strong class="text-red"> {{$current_account["name"]}} </strong> </h5>
+        <h5 class="">Détails des créditation du compte -- <strong class="text-red"> {{$current_account["name"]}} </strong> </h5>
 
-        <div class="table-responsive">
+        <div class="table-responsive shadow-lg p-3">
             <table class="table table-striped table-sm">
                 @if(count($account_solds)!=0)
                 <thead>
@@ -42,6 +43,7 @@
                 @endif
             </table>
         </div>
+        @endif
         @endif
     </div>
     <br><br><br>
@@ -115,7 +117,13 @@
                                 <button wire:click="showSolds({{$account['id']}})" class="btn btn-sm bg-success">Voir </button>
                             </td>
                             <td class="text-center">
+                                @if(session()->get("user"))
+                                @if(session()->get("user")["is_master"] || session()->get("user")["is_admin"] || session()->get("user")["is_chief_account"] || session()->get("user")["is_agent_account"])
                                 <button wire:click="showForm({{$account['id']}})" class="btn btn-sm bg-red">Créditer</button>
+                                @else
+                                <button disabled class="btn btn-sm bg-red">Créditer (bloqué)</button>
+                                @endif
+                                @endif
                             </td>
                         </tr>
                         @endforeach

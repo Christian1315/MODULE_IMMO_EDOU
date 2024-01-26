@@ -1,6 +1,6 @@
 <div>
     <!doctype html>
-    <html lang="en">
+    <html lang="fr">
 
     <head>
         <meta charset="utf-8">
@@ -37,7 +37,15 @@
             <input class="form-control form-control-dark w-100 bg-light search--bar" type="text" placeholder="Recherche" aria-label="searh">
             <ul class="navbar-nav px-3">
                 <li class="nav-item text-nowrap text-center">
-                    <a class="nav-link text-center" href="logout">SE DECONNECTER</a>
+                    <a class="nav-link text-center" href="logout">
+                        SE DECONNECTER
+                        &nbsp;
+                        @if(session()->get("user"))
+                        <span class="text-white">
+                            ({{session()->get("user")["username"]}})
+                        </span>
+                        @endif
+                    </a>
                 </li>
             </ul>
         </nav>
@@ -217,7 +225,8 @@
                                 <span data-feather="plus-circle"></span>
                             </a>
                         </h6>
-                        @if(session()->get("userId") ==1 || session()->get("userId") ==2 || session()->get("userId") ==3)
+                        @if(session()->get("user"))
+                        @if(session()->get("user")["is_master"] || session()->get("user")["is_admin"])
                         <ul class="nav flex-column mb-2">
 
                             @if($active=="setting")
@@ -253,6 +262,7 @@
                             @endif
 
                         </ul>
+                        @endif
                         @endif
                     </div>
                 </nav>
@@ -429,8 +439,8 @@
                                 <span data-feather="plus-circle"></span>
                             </a>
                         </h6>
-                       
-                        @if(session()->get("userId") ==1 || session()->get("userId") ==2 || session()->get("userId") ==3)
+                        @if(session()->get("user"))
+                        @if(session()->get("user")["is_master"] || session()->get("user")["is_admin"])
                         <ul class="nav flex-column mb-2">
 
                             @if($active=="setting")
@@ -466,6 +476,7 @@
                             @endif
 
                         </ul>
+                        @endif
                         @endif
                     </div>
                 </nav>

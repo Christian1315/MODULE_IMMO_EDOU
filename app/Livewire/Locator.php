@@ -267,7 +267,6 @@ class Locator extends Component
         $this->locator_houses = $locator["data"]["houses"];
         $this->current_locator_for_room = [];
         $this->current_locator = $locator["data"];
-        // dd($this->locator_houses);
     }
 
     public function showRooms(int $id)

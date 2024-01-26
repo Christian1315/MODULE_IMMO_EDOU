@@ -22,7 +22,6 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/demande-reinitialisation', "DemandReinitializePassword")->name("demande-reinitialisation");
 });
 
-
 Route::controller(AdminController::class)->group(function () {
     Route::get('dashbord', "Admin")->name("dashbord");
     Route::get('proprietor', "Proprietor")->name("proprietor");

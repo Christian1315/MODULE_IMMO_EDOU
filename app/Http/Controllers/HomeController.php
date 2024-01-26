@@ -40,6 +40,7 @@ class HomeController extends Controller
         // SUPPRESSION DU TOKEN
         session()->forget("userId");
         session()->forget("token");
+        session()->forget("user");
 
         return redirect("/")->with("success", "Vous êtes déconnecté.e avec succès:");
     }

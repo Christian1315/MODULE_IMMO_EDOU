@@ -14,7 +14,7 @@
     <div class="">
         <p class="text-center text-red"> {{$generalError}} </p>
     </div>
-<br>
+    <br>
     @if($show_form)
     <div class="container">
         <div class="row">
@@ -59,7 +59,7 @@
                             <div class="mb-3">
                                 <span class="text-red"> {{$house_error}} </span>
                                 <select wire:model="house" class="form-select form-control" name="house" aria-label="Default select example">
-                                    <option >Maison</option>
+                                    <option>Maison</option>
                                     @foreach($houses as $house)
                                     <option value="{{$house['id']}}">{{$house['name']}}</option>
                                     @endforeach
@@ -68,7 +68,7 @@
                             <div class="mb-3">
                                 <span class="text-red"> {{$nature_error}} </span>
                                 <select wire:model="nature" class="form-select form-control" name="nature" aria-label="Default select example">
-                                    <option >Nature de la chambre</option>
+                                    <option>Nature de la chambre</option>
                                     @foreach($room_natures as $nature)
                                     <option value="{{$nature['id']}}">{{$nature['name']}}</option>
                                     @endforeach
@@ -77,7 +77,7 @@
                             <div class="mb-3">
                                 <span class="text-red"> {{$type_error}} </span>
                                 <select wire:model="type" class="form-select form-control" name="type" aria-label="Default select example">
-                                    <option >Type de la chambre</option>
+                                    <option>Type de la chambre</option>
                                     @foreach($room_types as $type)
                                     <option value="{{$type['id']}}">{{$type['name']}}</option>
                                     @endforeach
@@ -153,7 +153,7 @@
     <!-- TABLEAU DE LISTE -->
     <div class="row">
         <div class="col-12">
-            <div class="table-responsive">
+            <div class="table-responsive shadow-lg p-3">
                 <table class="table table-striped table-sm">
                     <thead>
                         <tr>
@@ -185,7 +185,14 @@
                             </td>
                             <td class="text-center">
                                 <!-- <button class="btn btn-sm bg-dark">Modifier</button> &nbsp; -->
+
+                                @if(session()->get("user"))
+                                @if(session()->get("user")["is_master"] || session()->get("user")["is_admin"])
                                 <button wire:click="delete({{$room['id']}})" class="btn btn-sm bg-red">Suprimer</button>
+                                @else
+                                <button disabled class="btn btn-sm bg-red">Suprimer (bloqué)</button>
+                                @endif
+                                @endif
                             </td>
                         </tr>
                         @endforeach
@@ -196,7 +203,7 @@
                 </table>
             </div>
             <!-- pagination -->
-            <div class="justify-center">
+            <div class="justify-center my-2">
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
                         <li class="page-item"><a class="page-link" href="#">Previous</a></li>
@@ -213,7 +220,7 @@
         <div class="col-md-12">
             @if($current_room)
             <h5 class="text-center">Les Locataire de la chambre -- <strong class="text-red"> {{$current_room["number"]}} </strong> </h5>
-            <div class="table-responsive">
+            <div class="table-responsive shadow-lg p-3">
                 <table class="table table-striped table-sm shadow-lg p-3">
                     @if(count($room_locations)!=0)
                     <thead>

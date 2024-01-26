@@ -49,7 +49,7 @@
     <!-- TABLEAU DE LISTE -->
     <div class="row">
         <div class="col-12">
-            <div class="table-responsive">
+            <div class="table-responsive shadow-lg p-3">
                 <table class="table table-striped table-sm">
                     @if($paiements_count>0)
                     <thead>
@@ -101,7 +101,13 @@
                             </td>
                             <td class="text-center text-red"> <strong>{{$paiement['created_at']}}</strong> </td>
                             <td class="text-center">
+                                @if(session()->get("user"))
+                                @if(session()->get("user")["is_master"] || session()->get("user")["is_admin"])
                                 <button wire:click="showForm({{$paiement['id']}})" class="btn btn-sm bg-warning"> @if($show_form) Fermer @else Traiter le paiement @endif</button>
+                                @else
+                                <button disabled class="btn btn-sm bg-warning">Traiter le paiement(bloqué) </button>
+                                @endif
+                                @endif
                             </td>
                         </tr>
                         @endforeach
@@ -112,7 +118,7 @@
                 </table>
             </div>
             <!-- pagination -->
-            <div class="justify-center">
+            <div class="justify-center my-2">
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
                         <li class="page-item"><a class="page-link" href="#">Previous</a></li>

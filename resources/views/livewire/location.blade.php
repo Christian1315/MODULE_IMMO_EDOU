@@ -8,7 +8,13 @@
         <form class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="Rechercher une location" aria-label="Search">
         </form> &nbsp;&nbsp;
+        @if(session()->get("user"))
+        @if(session()->get("user")["is_master"] || session()->get("user")["is_admin"])
         <button wire:click="generateCaution" class="btn btn-sm bg-red">Gérer les cautions </button> &nbsp;
+        @else
+        <button disabled class="btn btn-sm bg-red">Gérer les cautions </button> &nbsp;
+        @endif
+        @endif
     </div>
     <br>
     <br><br>
@@ -39,7 +45,7 @@
                             <div class="mb-3">
                                 <span class="text-center text-red"> {{$room_error}} </span>
                                 <select wire:model="room" class="form-select form-control" name="room" aria-label="Default select example">
-                                    <option >Chambre</option>
+                                    <option>Chambre</option>
                                     @foreach($rooms as $room)
                                     <option value="{{$room['id']}}">{{$room['number']}}</option>
                                     @endforeach
@@ -61,7 +67,7 @@
                                 <span class="text-center text-red"> {{$type_error}} </span>
 
                                 <select wire:model="type" class="form-select form-control" name="type" aria-label="Default select example">
-                                    <option >Type de location</option>
+                                    <option>Type de location</option>
                                     @foreach($location_types as $type)
                                     <option value="{{$type['id']}}">{{$type['name']}}</option>
                                     @endforeach
@@ -229,14 +235,14 @@
             <div class="col-md-2"></div>
             <div class="col-md-8">
                 <form wire:submit.prevent="FactureTraitement" class="shadow-lg p-3 animate__animated animate__bounce">
-                    <h5 class="">Traitement de la facture << {{$activeFactureId}}>> d'une location</h5>
+                    <h5 class="">Traitement de la facture d'ID << {{$activeFactureId}}>> d'une location</h5>
 
                     <div class="row">
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <span class="text-red"> {{$trait_facture_status_error}} </span>
                                 <select name="trait_facture_status" wire:model="trait_facture_status" class="form-select form-control" name="house" aria-label="Default select example">
-                                    <option >Status de facture</option>
+                                    <option>Status de facture</option>
                                     @foreach($factures_status as $status)
                                     <option value="{{$status['id']}}">{{$status["name"]}}</option>
                                     @endforeach
@@ -259,7 +265,7 @@
     <!-- TABLEAU DE LISTE -->
     <div class="row">
         <div class="col-12">
-            <div class="table-responsive">
+            <div class="table-responsive shadow-lg p-3">
                 <table class="table table-striped table-sm">
                     <thead>
                         <tr>
@@ -296,6 +302,7 @@
                                 <button wire:click="showEncaisseForm({{$location['id']}})" class="btn btn-sm bg-dark" data-bs-toggle="modal" data-bs-target="#encaisserLocation">
                                     @if($show_encaisse_form) Fermer @else Encaisser @endif
                                 </button> &nbsp;
+
                                 <button wire:click="showFactures({{$location['id']}})" class="btn btn-sm bg-warning text-dark">Gérer les
                                     factures</button>
                                 &nbsp;
@@ -309,7 +316,7 @@
                 </table>
             </div>
             <!-- pagination -->
-            <div class="justify-center">
+            <div class="justify-center my-2">
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
                         <li class="page-item"><a class="page-link" href="#">Previous</a></li>
@@ -328,7 +335,7 @@
         <div class="col-md-12">
             @if($current_location)
             <h5 class="text-center">Les factures associées à cette location </strong> </h5>
-            <div class="table-responsive">
+            <div class="table-responsive shadow-lg p-3">
                 <table class="table table-striped table-sm shadow-lg p-3">
                     @if(count($location_factures)!=0)
                     <thead>
@@ -370,7 +377,13 @@
                             <td class="text-center"> <button class="bg-red btn btn-sm">{{$facture['status']['name']}}</button> </td>
                             @endif
                             <td class="text-center">
+                                @if(session()->get("user"))
+                                @if(session()->get("user")["is_master"] || session()->get("user")["is_admin"])
                                 <button wire:click="showFacturesTraitementForm({{$facture['id']}})" class="btn btn-sm bg-red">Traiter la facture</button> &nbsp;
+                                @else
+                                <button disabled class="btn btn-sm bg-red">Traiter la facture (bloqué)</button> &nbsp;
+                                @endif
+                                @endif
                             </td>
                         </tr>
                         @endforeach

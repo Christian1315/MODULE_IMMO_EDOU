@@ -21,7 +21,7 @@
     <!-- TABLEAU DE LISTE -->
     <div class="row">
         <div class="col-12">
-            <div class="table-responsive">
+            <div class="table-responsive shadow-lg p-3">
                 <table class="table table-striped table-sm">
                     @if(count($locations)!=0)
                     <thead>
@@ -33,7 +33,7 @@
                             <th class="text-center">Loyer Mensuel</th>
                             <th class="text-center">Dernier mois payé</th>
                             <th class="text-center">Date d'Intégration</th>
-                            <th class="text-center">Factures</th>
+                            <!-- <th class="text-center">Factures</th> -->
                         </tr>
                     </thead>
                     <tbody>
@@ -47,11 +47,11 @@
                             <td class="text-center">{{$location["room"]["total_amount"]}}</td>
                             <td class="text-center"> <button class="btn btn-sm btn-success"> {{$location["latest_loyer_date"]}} </button></td>
                             <td class="text-center">{{$location["integration_date"]}}</td>
-                            <td class="text-center">
+                            <!-- <td class="text-center">
                                 <a href="/{{$location['id']}}/factures" type="button" class="btn btn-sm bg-warning text-dark" data-bs-toggle="modal" data-bs-target="#locationFactures">
                                     Voir
                                 </a>
-                            </td>
+                            </td> -->
                         </tr>
                         @endforeach
                     </tbody>
@@ -61,7 +61,7 @@
                 </table>
             </div>
             <!-- pagination -->
-            <div class="justify-center">
+            <div class="justify-center my-2">
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
                         <li class="page-item"><a class="page-link" href="#">Previous</a></li>

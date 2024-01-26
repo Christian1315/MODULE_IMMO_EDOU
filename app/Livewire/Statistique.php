@@ -51,9 +51,6 @@ class Statistique extends Component
         if (!$locations["status"]) {
             $this->locations = [];
             $this->locations_count = 0;
-            // return redirect("/login")->with("error","Vous n'êtes pas connecté!");
-            // return redirect("/")->with("error","Vous n'êtes pas connecté!");
-
         } else {
             $this->locations = $locations["data"];
             $this->locations_count = count($locations["data"]);

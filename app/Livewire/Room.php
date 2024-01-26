@@ -206,7 +206,6 @@ class Room extends Component
 
     function addRoom()
     {
-
         $data = [
             "owner" => $this->userId,
             "loyer" => $this->loyer,
@@ -231,8 +230,6 @@ class Room extends Component
             "principal_img" => $this->principal_img,
             "comments" => $this->comments,
         ];
-
-        // dd($data);
 
         $response = Http::withHeaders($this->hearders)->post($this->BASE_URL . "immo/room/add", $data)->json();
         if (!$response["status"]) {
@@ -294,9 +291,6 @@ class Room extends Component
             }
         } else {
             $successMsg = $response["message"];
-            // $this->__construct();
-            // return redirect("/room")->with("success", $successMsg);
-
             $this->refresh($successMsg);
         }
     }
@@ -322,7 +316,6 @@ class Room extends Component
             return redirect("/room")->with("error", $response["erros"]);
             $this->refresh($response["erros"]);
         }
-        // return redirect("/room")->with("success", $response["message"]);
         $this->refresh($response["message"]);
     }
     public function render()

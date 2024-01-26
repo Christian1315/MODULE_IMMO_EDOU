@@ -92,6 +92,15 @@ class AccountSold extends Component
             $this->show_form = true;
             $this->show_solds = false;
         }
+
+        $account = Http::withHeaders($this->hearders)->get($this->BASE_URL . "immo/account/{$id}/retrieve")->json();
+        if (!$account["status"]) {
+            $this->account_solds = [];
+            $this->current_account = [];
+        }else {
+            $this->account_solds = $account["data"]["solds"];
+            $this->current_account = $account["data"];
+        }
     }
 
     function addSold()
@@ -135,15 +144,16 @@ class AccountSold extends Component
             $this->account_solds = $account["data"]["solds"];
             $this->current_account = $account["data"];
         }
+        $this->show_form = false;
 
         if ($this->show_solds) {
             $this->current_account = [];
             $this->show_solds = false;
-            $this->show_form = false;
+            // $this->show_form = false;
         } else {
             $this->show_solds = true;
             // $this->current_account = $account["data"];
-            $this->show_form = false;
+            // $this->show_form = false;
         }
     }
 }

@@ -136,7 +136,7 @@
     <!-- TABLEAU DE LISTE -->
     <div class="row">
         <div class="col-12">
-            <div class="table-responsive">
+            <div class="table-responsive shadow-lg p-3">
                 <table class="table table-striped table-sm">
                     <thead>
                         <tr>
@@ -168,10 +168,17 @@
                                 </button>
                             </td>
                             <td class="text-center">
-                                <!-- <button class="btn btn-sm bg-dark">Modifier</button> &nbsp; -->
+                                @if(session()->get("user"))
+                                @if(session()->get("user")["is_master"] || session()->get("user")["is_admin"])
                                 <button class="btn btn-sm bg-red" wire:click="delete({{$house['id']}})">Supprimer</button> &nbsp;
                                 <a href="{{$house['id']}}/stopHouseState" class="btn btn-sm bg-warning text-dark">Arrêter les
                                     états</a>
+                                @else
+                                <button disabled class="btn btn-sm bg-red">Supprimer (bloqué)</button> &nbsp;
+                                <a aria-disabled class="btn btn-sm bg-warning text-dark">Arrêter les
+                                    états (bloqué)</a>
+                                @endif
+                                @endif
                             </td>
                         </tr>
                         @endforeach
@@ -182,7 +189,7 @@
                 </table>
             </div>
             <!-- pagination -->
-            <div class="justify-center">
+            <div class="justify-center my-2">
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
                         <li class="page-item"><a class="page-link" href="#">Previous</a></li>
@@ -199,7 +206,7 @@
         <div class="col-md-12">
             @if($current_house)
             <h5 class="text-center">Les Chambres de la maison -- <strong class="text-red"> {{$current_house["name"]}} </strong> </h5>
-            <div class="table-responsive">
+            <div class="table-responsive shadow-lg p-3">
                 <table class="table table-striped table-sm shadow-lg p-3">
                     @if(count($house_rooms)!=0)
                     <thead>

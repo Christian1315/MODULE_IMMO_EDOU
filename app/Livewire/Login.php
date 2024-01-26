@@ -41,13 +41,16 @@ class Login extends Component
         } else {
             $token = $response["data"]["token"];
             $userId = $response["data"]["id"];
+            $user = $response["data"];
 
             $successMsg = $response["message"];
-            
+
             session()->put("token", $token);
             session()->put("userId", $userId);
+            session()->put("user", $user);
 
-            return redirect("/dashbord")->with("success",$successMsg);
+
+            return redirect("/dashbord")->with("success", $successMsg);
         }
     }
 

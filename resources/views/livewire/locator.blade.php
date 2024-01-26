@@ -37,7 +37,7 @@
                             </div><br>
                             <span class="text-red"> {{$sexe_error}} </span>
                             <select wire:model="sexe" class="form-select form-control" name="sexe" aria-label="Default select example">
-                                <option >Sexe</option>
+                                <option>Sexe</option>
                                 <option value="Maxculin">Maxculin</option>
                                 <option value="Feminin">Feminin</option>
                             </select><br>
@@ -68,7 +68,7 @@
                             <div class="mb-3">
                                 <span class="text-red"> {{$card_type_error}} </span>
                                 <select wire:model="card_type" class="form-select form-control" name="card_type" aria-label="Default select example">
-                                    <option >Type de carte</option>
+                                    <option>Type de carte</option>
                                     @foreach($card_types as $type)
                                     <option value="{{$type['id']}}">{{$type['name']}}</option>
                                     @endforeach
@@ -77,7 +77,7 @@
                             <div class="mb-3">
                                 <span class="text-red"> {{$country_error}} </span>
                                 <select wire:model="country" class="form-select form-control" name="country" aria-label="Default select example">
-                                    <option >Pays</option>
+                                    <option>Pays</option>
                                     @foreach($countries as $countrie)
                                     <option value="{{$countrie['id']}}">{{$countrie['name']}}</option>
                                     @endforeach
@@ -86,7 +86,7 @@
                             <div class="mb-3">
                                 <span class="text-red"> {{$departement_error}} </span>
                                 <select wire:model="departement" class="form-select form-control" name="departement" aria-label="Default select example">
-                                    <option >Département</option>
+                                    <option>Département</option>
                                     @foreach($departements as $departement)
                                     <option value="{{$departement['id']}}">{{$departement['name']}}</option>
                                     @endforeach
@@ -114,7 +114,7 @@
     <!-- TABLEAU DE LISTE -->
     <div class="row">
         <div class="col-12">
-            <div class="table-responsive">
+            <div class="table-responsive shadow-lg p-3">
                 <table class="table table-striped table-sm">
                     <thead>
                         <tr>
@@ -156,7 +156,13 @@
                             </td>
                             <td class="text-center">
                                 <!-- <button class="btn btn-sm bg-dark">Modifier</button> &nbsp; -->
+                                @if(session()->get("user"))
+                                @if(session()->get("user")["is_master"] || session()->get("user")["is_admin"])
                                 <button class="btn btn-sm bg-red" wire:click="delete({{$locator['id']}})">Suprimer</button>
+                                @else
+                                <button class="btn btn-sm bg-red" disabled>Suprimer (bloqué) </button>
+                                @endif
+                                @endif
                             </td>
                         </tr>
                         @endforeach
@@ -167,7 +173,7 @@
                 </table>
             </div>
             <!-- pagination -->
-            <div class="justify-center">
+            <div class="justify-center my-2">
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
                         <li class="page-item"><a class="page-link" href="#">Previous</a></li>
@@ -184,7 +190,7 @@
         <div class="col-md-12">
             @if($current_locator)
             <h5 class="text-center">Les Maisons dans lesquelles se trouve le locataire -- <strong class="text-red"> {{$current_locator["name"]}} {{$current_locator["prenom"]}} </strong> </h5>
-            <div class="table-responsive">
+            <div class="table-responsive shadow-lg p-3">
                 <table class="table table-striped table-sm shadow-lg p-3">
                     @if(count($locator_houses)!=0)
                     <thead>
@@ -221,7 +227,7 @@
         <div class="col-md-12">
             @if($current_locator_for_room)
             <h5 class="text-center">Les Chambres dans lesquelles se trouve le locataire -- <strong class="text-red"> {{$current_locator_for_room["name"]}} {{$current_locator_for_room["prenom"]}} </strong> </h5>
-            <div class="table-responsive">
+            <div class="table-responsive shadow-lg p-3">
                 <table class="table table-striped table-sm shadow-lg p-3">
                     @if(count($locator_rooms)!=0)
 

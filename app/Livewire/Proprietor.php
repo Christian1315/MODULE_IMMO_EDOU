@@ -6,14 +6,13 @@ use Illuminate\Support\Facades\Http;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
-use function Laravel\Prompts\confirm;
-
 class Proprietor extends Component
 {
     use WithFileUploads;
 
     public $proprietors = [];
     public $proprietors_count = [];
+    public $proprietorsLinks = [];
 
 
     // 
@@ -69,7 +68,6 @@ class Proprietor extends Component
     function __construct()
     {
         $this->BASE_URL = env("BASE_URL");
-        // session()->forget("token");
         $this->token = session()->get("token");
         $this->userId = session()->get("userId");
 
@@ -80,18 +78,18 @@ class Proprietor extends Component
         // PROPRETAIRES
         $proprietors = Http::withHeaders($this->hearders)->get($this->BASE_URL . "immo/proprietor/all")->json();
         if (!$proprietors["status"]) {
-            $this->proprietors = [];
             $this->proprietors_count = 0;
+            $this->proprietors = [];
         } else {
-            $this->proprietors = $proprietors["data"];
             $this->proprietors_count = count($proprietors["data"]);
+            $this->proprietors = $proprietors["data"];
         }
 
         // PAYS
         $countries = Http::withHeaders($this->hearders)->get($this->BASE_URL . "immo/country/all")->json();
         if (!$countries["status"]) {
             $this->countries = [];
-        }else {
+        } else {
             $this->countries = $countries["data"];
         }
 
@@ -99,7 +97,7 @@ class Proprietor extends Component
         $cities = Http::withHeaders($this->hearders)->get($this->BASE_URL . "immo/city/all")->json();
         if (!$cities["status"]) {
             $this->cities = [];
-        }else {
+        } else {
             $this->cities = $cities["data"];
         }
 
@@ -107,7 +105,7 @@ class Proprietor extends Component
         $card_types = Http::withHeaders($this->hearders)->get($this->BASE_URL . "immo/cardType/all")->json();
         if (!$card_types["status"]) {
             $this->card_types = [];
-        }else {
+        } else {
             $this->card_types = $card_types["data"];
         }
     }
@@ -120,18 +118,18 @@ class Proprietor extends Component
         // PROPRETAIRES
         $proprietors = Http::withHeaders($this->hearders)->get($this->BASE_URL . "immo/proprietor/all")->json();
         if (!$proprietors["status"]) {
-            $this->proprietors = [];
             $this->proprietors_count = 0;
+            $this->proprietors = [];
         } else {
-            $this->proprietors = $proprietors["data"];
             $this->proprietors_count = count($proprietors["data"]);
+            $this->proprietors = $proprietors["data"];
         }
 
         // PAYS
         $countries = Http::withHeaders($this->hearders)->get($this->BASE_URL . "immo/country/all")->json();
         if (!$countries["status"]) {
             $this->countries = [];
-        }else {
+        } else {
             $this->countries = $countries["data"];
         }
 
@@ -139,7 +137,7 @@ class Proprietor extends Component
         $cities = Http::withHeaders($this->hearders)->get($this->BASE_URL . "immo/city/all")->json();
         if (!$cities["status"]) {
             $this->cities = [];
-        }else {
+        } else {
             $this->cities = $cities["data"];
         }
 
@@ -147,7 +145,7 @@ class Proprietor extends Component
         $card_types = Http::withHeaders($this->hearders)->get($this->BASE_URL . "immo/cardType/all")->json();
         if (!$card_types["status"]) {
             $this->card_types = [];
-        }else {
+        } else {
             $this->card_types = $card_types["data"];
         }
     }
@@ -165,7 +163,6 @@ class Proprietor extends Component
 
     function addProprio()
     {
-
         $data = [
             "owner" => $this->userId,
             "firstname" => $this->firstname,
@@ -233,9 +230,6 @@ class Proprietor extends Component
             }
         } else {
             $successMsg = $response["message"];
-
-            // return redirect("/proprietor")->with("success", $successMsg);
-
             $this->refresh($successMsg);
         }
     }
@@ -250,18 +244,14 @@ class Proprietor extends Component
             $this->proprietor_houses = $proprietor["data"]["houses"];
             $this->current_proprietor = $proprietor["data"];
         }
-        
     }
 
     public function delete(int $id)
     {
         $response = Http::withHeaders($this->hearders)->delete($this->BASE_URL . "immo/proprietor/{$id}/delete")->json();
-
         if (!$response["status"]) {
-            // return redirect("/proprietor")->with("error", $response["erros"]);
             $this->refresh($response["erros"]);
         }
-        // return redirect("/proprietor")->with("success", $response["message"]);
         $this->refresh($response["message"]);
     }
 
